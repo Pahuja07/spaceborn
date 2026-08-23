@@ -1,0 +1,311 @@
+cmake_minimum_required(VERSION 3.20)
+project(clearpath_hardware_interfaces)
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+
+find_package(controller_interface REQUIRED)
+find_package(controller_manager REQUIRED)
+find_package(controller_manager_msgs REQUIRED)
+find_package(clearpath_motor_msgs REQUIRED)
+find_package(clearpath_platform_msgs REQUIRED)
+find_package(diagnostic_updater REQUIRED)
+find_package(hardware_interface REQUIRED)
+find_package(pluginlib REQUIRED)
+find_package(rclcpp REQUIRED)
+
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+
+## COMPILE
+
+# Lighting
+set(LIGHTING_EXECUTABLE lighting_node)
+set(LIGHTING_LIB clearpath_platform_lighting)
+set(LIGHTING_DEPENDENCIES
+  clearpath_motor_msgs
+  clearpath_platform_msgs
+  diagnostic_updater
+  sensor_msgs
+  rclcpp
+)
+
+add_library(
+  ${LIGHTING_LIB}
+  SHARED
+  src/lighting/lighting.cpp
+  src/lighting/sequence.cpp
+  src/lighting/color.cpp
+)
+
+ament_target_dependencies(${LIGHTING_LIB} ${LIGHTING_DEPENDENCIES})
+
+target_include_directories(
+  ${LIGHTING_LIB}
+  PRIVATE
+  include
+)
+
+add_executable(${LIGHTING_EXECUTABLE} src/lighting/main.cpp)
+target_link_libraries(${LIGHTING_EXECUTABLE} ${LIGHTING_LIB})
+ament_target_dependencies(${LIGHTING_EXECUTABLE} ${LIGHTING_DEPENDENCIES})
+
+target_include_directories(
+  ${LIGHTING_EXECUTABLE}
+  PRIVATE
+  include
+)
+
+# Cooling
+set(FAN_CONTROL_EXECUTABLE fan_control_node)
+set(FAN_CONTROL_DEPENDENCIES
+  clearpath_motor_msgs
+  clearpath_platform_msgs
+  diagnostic_updater
+  sensor_msgs
+  rclcpp
+)
+
+add_executable(${FAN_CONTROL_EXECUTABLE} src/a300/fan_control.cpp)
+
+target_include_directories(
+  ${FAN_CONTROL_EXECUTABLE}
+  PRIVATE
+  include
+)
+
+target_link_libraries(${FAN_CONTROL_EXECUTABLE})
+ament_target_dependencies(${FAN_CONTROL_EXECUTABLE} ${FAN_CONTROL_DEPENDENCIES})
+
+# Pinout
+set(PINOUT_CONTROL_EXECUTABLE pinout_control_node)
+set(PINOUT_CONTROL_DEPENDENCIES
+  clearpath_platform_msgs
+  std_msgs
+  std_srvs
+  rclcpp
+)
+
+add_executable(${PINOUT_CONTROL_EXECUTABLE} src/pinout/pinout_control.cpp)
+
+target_include_directories(
+  ${PINOUT_CONTROL_EXECUTABLE}
+  PRIVATE
+  include
+)
+
+target_link_libraries(${PINOUT_CONTROL_EXECUTABLE})
+ament_target_dependencies(${PINOUT_CONTROL_EXECUTABLE} ${PINOUT_CONTROL_DEPENDENCIES})
+
+# SW Low SOC cutoff
+set(SW_LOW_SOC_EXECUTABLE sw_low_soc_cutoff_node)
+set(SW_LOW_SOC_DEPENDENCIES
+  sensor_msgs
+  std_srvs
+  rclcpp
+)
+
+add_executable(${SW_LOW_SOC_EXECUTABLE} src/a300/software_low_soc_cutoff.cpp)
+
+target_include_directories(
+  ${SW_LOW_SOC_EXECUTABLE}
+  PRIVATE
+  include
+)
+
+target_link_libraries(${SW_LOW_SOC_EXECUTABLE})
+ament_target_dependencies(${SW_LOW_SOC_EXECUTABLE} ${SW_LOW_SOC_DEPENDENCIES})
+
+# A200 Hardware
+add_library(
+  a200_hardware
+  SHARED
+  src/a200/hardware.cpp
+  src/a200/status.cpp
+  src/a200/horizon_legacy/horizon_legacy_wrapper.cpp
+  src/a200/horizon_legacy/crc.cpp
+  src/a200/horizon_legacy/Logger.cpp
+  src/a200/horizon_legacy/Message.cpp
+  src/a200/horizon_legacy/Message_data.cpp
+  src/a200/horizon_legacy/Message_request.cpp
+  src/a200/horizon_legacy/Message_cmd.cpp
+  src/a200/horizon_legacy/Transport.cpp
+  src/a200/horizon_legacy/Number.cpp
+  src/a200/horizon_legacy/linux_serial.cpp
+)
+
+target_include_directories(
+  a200_hardware
+  PRIVATE
+  include
+)
+
+ament_target_dependencies(
+  a200_hardware
+  clearpath_platform_msgs
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+
+# J100 Hardware
+add_library(
+  j100_hardware
+  SHARED
+  src/j100/hardware.cpp
+  src/j100/hardware_interface.cpp
+  src/diff_drive/hardware.cpp
+  src/diff_drive/hardware_interface.cpp
+)
+
+target_include_directories(
+  j100_hardware
+  PRIVATE
+  include
+)
+
+ament_target_dependencies(
+  j100_hardware
+  clearpath_platform_msgs
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+# W200 Hardware
+add_library(
+  w200_hardware
+  SHARED
+  src/w200/hardware.cpp
+  src/w200/hardware_interface.cpp
+)
+
+target_include_directories(
+  w200_hardware
+  PRIVATE
+  include
+)
+
+ament_target_dependencies(
+  w200_hardware
+  clearpath_platform_msgs
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+# Puma Hardware
+add_library(
+  puma_hardware
+  SHARED
+  src/puma/hardware.cpp
+  src/puma/hardware_interface.cpp
+)
+
+target_include_directories(
+  puma_hardware
+  PRIVATE
+  include
+)
+
+ament_target_dependencies(
+  puma_hardware
+  clearpath_motor_msgs
+  clearpath_platform_msgs
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+# Lynx Hardware
+add_library(
+  lynx_hardware
+  SHARED
+  src/lynx/hardware.cpp
+  src/lynx/hardware_interface.cpp
+)
+
+target_include_directories(
+  lynx_hardware
+  PRIVATE
+  include
+)
+
+ament_target_dependencies(
+  lynx_hardware
+  clearpath_motor_msgs
+  clearpath_platform_msgs
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+pluginlib_export_plugin_description_file(hardware_interface src/a200/hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface src/j100/hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface src/w200/hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface src/puma/hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface src/lynx/hardware.xml)
+
+# INSTALL
+install(
+  TARGETS a200_hardware
+          j100_hardware
+          w200_hardware
+          puma_hardware
+          lynx_hardware
+          ${FAN_CONTROL_EXECUTABLE}
+          ${PINOUT_CONTROL_EXECUTABLE}
+          ${LIGHTING_EXECUTABLE}
+          ${LIGHTING_LIB}
+          ${SW_LOW_SOC_EXECUTABLE}
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+install(
+  DIRECTORY include/
+  DESTINATION include
+)
+
+ament_python_install_package(${PROJECT_NAME})
+
+install(PROGRAMS
+  ${PROJECT_NAME}/battery_state/battery_state_estimator
+  ${PROJECT_NAME}/battery_state/battery_state_control
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+## EXPORTS
+ament_export_include_directories(
+  include
+)
+ament_export_libraries(
+  a200_hardware
+  j100_hardware
+  w200_hardware
+  puma_hardware
+  lynx_hardware
+  ${LIGHTING_LIB}
+)
+ament_export_dependencies(
+  hardware_interface
+  pluginlib
+  rclcpp
+)
+
+ament_package()
