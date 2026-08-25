@@ -1,0 +1,475 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package clearpath_generator_robot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.9.3 (2026-05-21)
+------------------
+
+2.9.2 (2026-04-14)
+------------------
+* Feature: Generator Sample Tests (`#315 <https://github.com/clearpathrobotics/clearpath_robot/issues/315>`_)
+  * Remove empty sensor config directories
+  * Ignore non-YAML files in tests
+  * Add generator testing to CI
+  * Create sensor directory if sensors to generate exist
+  * Generate platform extras in robot launch generator
+  * Rename README to markdown and add generator tests
+* Contributors: luis-camero
+
+2.9.1 (2026-02-11)
+------------------
+
+2.9.0 (2026-02-11)
+------------------
+* Added support for the Microstrain GV7. (`#305 <https://github.com/clearpathrobotics/clearpath_robot/issues/305>`_)
+  * Added support for the Microstrain GV7.
+  * Rename microstrain_imu GV7 parameter file
+  * Check for device type of microstrain IMU to use different config file
+  * Removed un-needed launch file and fixed data_raw remap.
+  ---------
+  Co-authored-by: Luis Camero <lcamero@clearpathrobotics.com>
+* Rename MICRO_ROS to UROS (`#303 <https://github.com/clearpathrobotics/clearpath_robot/issues/303>`_)
+* Feature: Proton (`#300 <https://github.com/clearpathrobotics/clearpath_robot/issues/300>`_)
+  * Add Proton launch to platform service launch
+  * Use self.clearpath_config instead of creating BaseGenerator in common
+  * Add clearpath_firmware and proton_ros2 as exec_depend
+* Fix: CMake Verision and CI (`#299 <https://github.com/clearpathrobotics/clearpath_robot/issues/299>`_)
+  * Updated cmake version to 3.20
+  * Switch action to run on container
+  * Update repos update action version
+  * Increase test timeout
+* Contributors: Tony Baltovski, luis-camero
+
+2.8.6 (2026-01-20)
+------------------
+* Remove second check to add battery estimator (`#297 <https://github.com/clearpathrobotics/clearpath_robot/issues/297>`_)
+* Contributors: luis-camero
+
+2.8.5 (2026-01-19)
+------------------
+* Fix: Generic (`#283 <https://github.com/clearpathrobotics/clearpath_robot/issues/283>`_)
+  * Add generic components to generic robot
+  * Emty components for generic robot
+* Contributors: luis-camero
+
+2.8.4 (2025-11-13)
+------------------
+
+2.8.3 (2025-11-10)
+------------------
+* Remove second check to add battery estimator (`#279 <https://github.com/clearpathrobotics/clearpath_robot/issues/279>`_)
+* Contributors: luis-camero
+
+2.8.2 (2025-10-28)
+------------------
+* Fix/Feature: Valence Battery Update/Fix (`#278 <https://github.com/clearpathrobotics/clearpath_robot/issues/278>`_)
+  * Only add battery estimator when no battery driver
+  * Update valence arguments
+  * Fix valence launch filename
+  * Remove duplicate definition
+  * Add robot namespace argument
+* Contributors: luis-camero
+
+2.8.1 (2025-10-23)
+------------------
+
+2.8.0 (2025-10-23)
+------------------
+* Generate peplink launches (`#275 <https://github.com/clearpathrobotics/clearpath_robot/issues/275>`_)
+  * Use the new platform.wireless, add peplink nodes for the onboard router + base station hardware. Move the wireless_watcher flag into platform.wireless
+  * Add peplink router dependency
+  * Remap the diagnostics topic for the peplink nodes
+* Generate multiple launch entries for extras (`#271 <https://github.com/clearpathrobotics/clearpath_robot/issues/271>`_)
+* Catch FileNotFound exceptions when loading the samples and ignore them
+  Some samples have `/path/to/...` placeholders, which will never load correctly (`#274 <https://github.com/clearpathrobotics/clearpath_robot/issues/274>`_)
+* Use flattened parameter names for Oak-D configuration (`#267 <https://github.com/clearpathrobotics/clearpath_robot/issues/267>`_)
+* Contributors: Chris Iverach-Brereton
+
+2.7.2 (2025-09-18)
+------------------
+* Feature: Kinova Jazzy Support (`#268 <https://github.com/clearpathrobotics/clearpath_robot/issues/268>`_)
+  * Add Kinova vision node to manipulator launch file
+  * Kinova camera rate from string to double
+  * Use node name to namespace Kinova camera topics
+  * Add Kinova Pointcloud ComposableNodeContainer
+  * Fix Kinova processing container remappings
+  * Remove unnecessary lines
+  * Rename depth registered node
+  * Update depth registered node in pointcloud generator
+  * Add missing remap to pointcloud processor
+  * Lint
+* Contributors: luis-camero
+
+2.7.1 (2025-09-16)
+------------------
+* Feature: Franka in Jazzy (`#266 <https://github.com/clearpathrobotics/clearpath_robot/issues/266>`_)
+  * Feature: Franka Hand (`#252 <https://github.com/clearpathrobotics/clearpath_robot/issues/252>`_)
+  * Add frank gripper launch
+  * Add manipulators to namespace
+  * Add remapping of joint states
+  * Fix joint names
+  * Define arm_id in joint names to franka_gripper_node
+  * Rename franka_gripper node
+* Contributors: luis-camero
+
+2.7.0 (2025-08-25)
+------------------
+* Fix: OAK-D Parameters (`#260 <https://github.com/clearpathrobotics/clearpath_robot/issues/260>`_)
+* Contributors: luis-camero
+
+2.6.3 (2025-08-18)
+------------------
+
+2.6.2 (2025-07-15)
+------------------
+
+2.6.1 (2025-07-04)
+------------------
+
+2.6.0 (2025-07-04)
+------------------
+* Enable dependency on sevcon and valence bms
+* Contributors: Luis Camero
+
+2.5.1 (2025-06-17)
+------------------
+
+2.5.0 (2025-05-29)
+------------------
+* Feature: ros2_canopen Inventus driver switch  (`#216 <https://github.com/clearpathrobotics/clearpath_robot/issues/216>`_)
+  * Add canopen_inventus launch to generator
+  * Add canopen_inventus_bringup dependency
+  * Add canopen_inventus_bringup to CI rosdep key ignore
+  * Remove inventus_bmu config and launch
+  * Remove unused import
+* Add foxglove bridge launch to platform service launch (`#217 <https://github.com/clearpathrobotics/clearpath_robot/issues/217>`_)
+* Add wireless watcher based on enable flag (`#218 <https://github.com/clearpathrobotics/clearpath_robot/issues/218>`_)
+* Feature: CAN Bridge Parameters (`#210 <https://github.com/clearpathrobotics/clearpath_robot/issues/210>`_)
+* Renamed to low soc cutoff from low voltage cutoff and fixed service client name.
+  * Renamed to low soc cutoff from low voltage cutoff and fixed service client name.
+  * Fixed generator member.
+* Contributors: Hilary Luo, Tony Baltovski, luis-camero
+
+2.4.1 (2025-05-20)
+------------------
+
+2.4.0 (2025-04-30)
+------------------
+* Added a software based low voltage cut-off for the A300. (`#185 <https://github.com/clearpathrobotics/clearpath_robot/issues/185>`_)
+* Pinout control node (`#198 <https://github.com/clearpathrobotics/clearpath_robot/issues/198>`_)
+* Contributors: Roni Kreinin, Tony Baltovski
+
+2.3.3 (2025-04-17)
+------------------
+
+2.3.2 (2025-04-16)
+------------------
+
+2.3.1 (2025-04-14)
+------------------
+
+2.3.0 (2025-04-11)
+------------------
+* Feature: Add UR socat tool communication script (`#174 <https://github.com/clearpathrobotics/clearpath_robot/issues/174>`_) (`#179 <https://github.com/clearpathrobotics/clearpath_robot/issues/179>`_)
+* Add exception handlers to the generators for Unsupported* exceptions (`#181 <https://github.com/clearpathrobotics/clearpath_robot/issues/181>`_)
+* Move extras launch into a new service (`#178 <https://github.com/clearpathrobotics/clearpath_robot/issues/178>`_)
+* Feature/diagnostic categories (`#175 <https://github.com/clearpathrobotics/clearpath_robot/issues/175>`_)
+* Feature/inventus diagnostics (`#170 <https://github.com/clearpathrobotics/clearpath_robot/issues/170>`_)
+* Contributors: Chris Iverach-Brereton, Hilary Luo, luis-camero
+
+2.2.4 (2025-04-07)
+------------------
+* [clearpath_generator_robot] Added python3-apt as exec dep. (`#182 <https://github.com/clearpathrobotics/clearpath_robot/issues/182>`_)
+* Contributors: Tony Baltovski
+
+2.2.3 (2025-03-20)
+------------------
+
+2.2.2 (2025-03-17)
+------------------
+* Fix/diag remap (`#168 <https://github.com/clearpathrobotics/clearpath_robot/issues/168>`_)
+  * Remap diagnostics topic in fan control node
+  * Remap diagnostics topic in wireless watcher node
+* Contributors: Hilary Luo
+
+2.2.1 (2025-03-12)
+------------------
+* Fix: Change path to imu_filter to platform config (`#167 <https://github.com/clearpathrobotics/clearpath_robot/issues/167>`_)
+  Co-authored-by: Luis Camero <lcamero@clearpathrobotics.com>
+* Contributors: Tony Baltovski
+
+2.2.0 (2025-03-11)
+------------------
+* Apply serial, IP address, MX ID to OAK-D cameras (`#159 <https://github.com/clearpathrobotics/clearpath_robot/issues/159>`_)
+* [clearpath_generator_robot] Added inventus_bmu as exec dependency.
+* Added Lynx motor driver diagnostics (`#149 <https://github.com/clearpathrobotics/clearpath_robot/issues/149>`_)
+  * Removed trailing spaces
+  * Added Lynx motor diagnostics
+* Feature/lighting diagnostics (`#144 <https://github.com/clearpathrobotics/clearpath_robot/issues/144>`_)
+  * Add lighting diagnostics
+  * Remap lighting diagnostic topic
+  * Set diagnostic updater hardware id to platform since serial isn't locally available
+  * Improve clarity of diagnostic summary text
+* Contributors: Chris Iverach-Brereton, Hilary Luo, Tony Baltovski
+
+2.1.2 (2025-02-28)
+------------------
+
+2.1.1 (2025-02-06)
+------------------
+
+2.1.0 (2025-01-31)
+------------------
+* Jazzy Phidgets IMU Filter (`#138 <https://github.com/clearpathrobotics/clearpath_robot/issues/138>`_)
+  * IMU Filter
+  * Add imu_filter launch file and added madgwick entry to filter
+  * Add imu filter to generator
+  * Rename imu_filter_node to imu_filter_madgwick
+* Added initial fan control for A300. (`#136 <https://github.com/clearpathrobotics/clearpath_robot/issues/136>`_)
+  * Added initial fan control for A300.
+  * Fixed normal command and updated battery range.
+* Feature/diagnostics (`#135 <https://github.com/clearpathrobotics/clearpath_robot/issues/135>`_)
+  * Initial port of diagnostics to C++
+  * Remap axis camera topics to match API
+  * Monitor MCU Status message frequency
+  * Added firmware version check
+  * Group MCU diagnostics together
+  * Improve messaging around firmware versions
+  * Disable MCU diagnostics for A200
+* Contributors: Hilary Luo, Tony Baltovski, luis-camero
+
+2.0.4 (2025-01-22)
+------------------
+* Add config and launch for inventus
+* Contributors: Luis Camero
+
+2.0.3 (2025-01-17)
+------------------
+
+2.0.2 (2025-01-17)
+------------------
+
+2.0.1 (2025-01-17)
+------------------
+
+2.0.0 (2025-01-17)
+------------------
+* Add the package initializations that used to be in clearpath_common_generator into the robot generators (`#110 <https://github.com/clearpathrobotics/clearpath_robot/issues/110>`_)
+* A300 VCAN (`#111 <https://github.com/clearpathrobotics/clearpath_robot/issues/111>`_)
+  * Inventus CAN module ids depending on battery configuration
+  * Name each socketcan interface launch file by interface name
+  * Pass filename argument to launchfile
+* Add dependency on inventus_bmu (`#109 <https://github.com/clearpathrobotics/clearpath_robot/issues/109>`_)
+* A300 (`#106 <https://github.com/clearpathrobotics/clearpath_robot/issues/106>`_)
+  * Added lynx hardware interface
+  * Lynx motor driver
+  Rename clearpath_platform namespace to clearpath_hardware_interfaces
+  * Added A300 and Inventus battery to generator
+  * A300 lighting
+  * Dependencies and README
+  * Rename platform to hardware_interfaces in hardware.xml
+  * Fix append of bms in generator
+  * Removed wheel_joints\_ map
+  ---------
+  Co-authored-by: Luis Camero <lcamero@clearpathrobotics.com>
+* Fixed spelling
+* Move battery_state to clearpath_hardware_interfaces
+* Use clearpath_ros2_socketcan_interface launch files
+* Added pointcloud support to OakD
+* Catch the new unsupported platform/accessory exceptions in the tests
+* Remove missing jazzy dependencies (for now)
+* Socket CAN Bridges (`#93 <https://github.com/clearpathrobotics/clearpath_robot/issues/93>`_)
+  * Generate can bridges
+  * Generate script source robot workspace
+  * Remove extra line
+  ---------
+  Co-authored-by: Roni Kreinin <rkreinin@clearpathrobotics.com>
+* Change puma messages dependency to the new clearpath_motor_msgs
+* Use the distribution provided by the common generators
+* Contributors: Chris Iverach-Brereton, Luis Camero, Roni Kreinin, Tony Baltovski, luis-camero
+
+1.1.0 (2025-01-15)
+------------------
+
+1.0.1 (2024-11-28)
+------------------
+
+1.0.0 (2024-11-26)
+------------------
+* Added minimum version.
+* Update package paths in generator
+* Fixed spelling
+* Move battery_state to clearpath_hardware_interfaces
+* Use clearpath_ros2_socketcan_interface launch files
+* [Backport] Socket CAN Bridges (`#93 <https://github.com/clearpathrobotics/clearpath_robot/issues/93>`_) (`#98 <https://github.com/clearpathrobotics/clearpath_robot/issues/98>`_)
+  * Socket CAN Bridges (`#93 <https://github.com/clearpathrobotics/clearpath_robot/issues/93>`_)
+  * Generate can bridges
+  * Generate script source robot workspace
+  * Remove extra line
+  ---------
+  Co-authored-by: Roni Kreinin <rkreinin@clearpathrobotics.com>
+  * Revert source path in generate script
+  * Remove trailing comma
+  ---------
+  Co-authored-by: Roni Kreinin <rkreinin@clearpathrobotics.com>
+* [Backport] Socket CAN Bridges (`#93 <https://github.com/clearpathrobotics/clearpath_robot/issues/93>`_) (`#98 <https://github.com/clearpathrobotics/clearpath_robot/issues/98>`_)
+  * Socket CAN Bridges (`#93 <https://github.com/clearpathrobotics/clearpath_robot/issues/93>`_)
+  * Generate can bridges
+  * Generate script source robot workspace
+  * Remove extra line
+  ---------
+  Co-authored-by: Roni Kreinin <rkreinin@clearpathrobotics.com>
+  * Revert source path in generate script
+  * Remove trailing comma
+  ---------
+  Co-authored-by: Roni Kreinin <rkreinin@clearpathrobotics.com>
+* Added pointcloud support to OakD
+* Contributors: Luis Camero, Roni Kreinin, Tony Baltovski, luis-camero
+
+0.3.2 (2024-10-04)
+------------------
+
+0.3.1 (2024-09-23)
+------------------
+
+0.3.0 (2024-09-19)
+------------------
+* Only add manipulator.launch if manipulator added
+* Add Ridgeback to generator
+* Added dependency to puma_motor_driver
+* Added puma node to generated platform launch
+* Added manipulators to launch generator
+* Contributors: Luis Camero, luis-camero
+
+0.2.15 (2024-08-12)
+-------------------
+
+0.2.14 (2024-08-08)
+-------------------
+
+0.2.13 (2024-07-30)
+-------------------
+
+0.2.12 (2024-07-22)
+-------------------
+
+0.2.11 (2024-05-28)
+-------------------
+
+0.2.10 (2024-05-16)
+-------------------
+
+0.2.9 (2024-05-16)
+------------------
+* Fix tf_static for realsense and microstrain
+* Contributors: Hilary Luo
+
+0.2.8 (2024-05-14)
+------------------
+* Lint error in test
+* Workspace install paths
+* Ignore error from deleting clearpath temp folder
+* More linting changes
+* Fixed linting errors
+* Added pytest to check config
+* Fixed linter errors
+* Contributors: Luis Camero
+
+0.2.7 (2024-04-10)
+------------------
+* Check the correct launch file
+* Contributors: Luis Camero
+
+0.2.6 (2024-04-08)
+------------------
+* Add extra launch file to sensor service
+* Contributors: Luis Camero
+
+0.2.5 (2024-03-07)
+------------------
+* Add valence dependency
+* Launch Valence BMS when relevant
+* Rename node based on input
+* Added rectify and resize
+* Float hz parameter
+* Contributors: Hilary Luo, Luis Camero, Roni Kreinin
+
+0.2.4 (2024-01-19)
+------------------
+
+0.2.3 (2024-01-18)
+------------------
+* Removed namespaced tf_static
+* Contributors: Luis Camero
+
+0.2.2 (2024-01-10)
+------------------
+* [clearpath_generator_robot] Re-added sevcon_traction as dependency.
+* Contributors: Tony Baltovski
+
+0.2.1 (2023-12-18)
+------------------
+* Added missing dependency
+* Contributors: Hilary Luo
+
+0.2.0 (2023-12-13)
+------------------
+* [clearpath_generator_robot] Disabled depend for now.
+* Added D100 and D150 to generator and battery node
+* IMU 0 filter for W200
+* sevcon_traction dependency
+* Generate sevcon traction node
+* Generate lighting node
+* Launch battery state control
+* Renamed to battery_state_estimator
+  Added to robot generator
+* Get namespace from robot.yaml for diagnostics launch
+  Added diagnostics launch to generator
+* W200 uROS node
+* Contributors: Roni Kreinin, Tony Baltovski
+
+0.1.3 (2023-10-04)
+------------------
+
+0.1.2 (2023-09-27)
+------------------
+
+0.1.1 (2023-09-11)
+------------------
+* [clearpath_generator_robot] Re-added micro-ros-agent as exec depend.
+* Contributors: Tony Baltovski
+
+0.1.0 (2023-08-31)
+------------------
+
+0.0.3 (2023-08-15)
+------------------
+* Removed micros-ros-agent as dep.
+* Renamed UST10 to UST
+  Cleaned up generators
+* Move author in all package.xml to pass xml linter.
+* [clearpath_generator_robot] Added author to package.xml.
+* Added UM6/7
+* Added Garmin 18x, Smart6 and Smart7
+* Contributors: Roni Kreinin, Tony Baltovski
+
+0.0.2 (2023-07-25)
+------------------
+* Sensor namespace
+* Param generator
+* Launch generator cleanup
+* NMEA navsat driver
+* Import paths
+* Contributors: Roni Kreinin
+
+0.0.1 (2023-07-20)
+------------------
+* Set use_sim_time to false
+* Updated namespace and domain id service call
+* Updates for how launch files are written
+* Namespacing support
+* Moved clearpath_platform to clearpath_common
+  Added clearpath_generator_robot
+  Created clearpath_robot metapackage
+  Moved scripts and services into clearpath_robot
+* Contributors: Roni Kreinin

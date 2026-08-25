@@ -1,0 +1,293 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package lynx_motor_driver
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.9.3 (2026-05-21)
+------------------
+
+2.9.2 (2026-04-14)
+------------------
+
+2.9.1 (2026-02-11)
+------------------
+
+2.9.0 (2026-02-11)
+------------------
+* Fix: CMake Verision and CI (`#299 <https://github.com/clearpathrobotics/clearpath_robot/issues/299>`_)
+  * Updated cmake version to 3.20
+  * Switch action to run on container
+  * Update repos update action version
+  * Increase test timeout
+* Fixed comparison warning. (`#306 <https://github.com/clearpathrobotics/clearpath_robot/issues/306>`_)
+* Contributors: Tony Baltovski, luis-camero
+
+2.8.6 (2026-01-20)
+------------------
+
+2.8.5 (2026-01-19)
+------------------
+
+2.8.4 (2025-11-13)
+------------------
+
+2.8.3 (2025-11-10)
+------------------
+
+2.8.2 (2025-10-28)
+------------------
+
+2.8.1 (2025-10-23)
+------------------
+
+2.8.0 (2025-10-23)
+------------------
+
+2.7.2 (2025-09-18)
+------------------
+
+2.7.1 (2025-09-16)
+------------------
+
+2.7.0 (2025-08-25)
+------------------
+* Drivetrains (`#250 <https://github.com/clearpathrobotics/clearpath_robot/issues/250>`_)
+  * Allow for only 2 motors in fan control node
+  * Fixed logic
+  * Added 2 joint support for lynx hardware
+  * Switch to using motor protection message
+* Contributors: Roni Kreinin
+
+2.6.3 (2025-08-18)
+------------------
+
+2.6.2 (2025-07-15)
+------------------
+
+2.6.1 (2025-07-04)
+------------------
+* [clearpath_motor_drivers] Added missing deps of lynx_motor_driver.
+* Contributors: Tony Baltovski
+
+2.6.0 (2025-07-04)
+------------------
+* Updated lynx bin to 1.0.1 (`#237 <https://github.com/clearpathrobotics/clearpath_robot/issues/237>`_)
+* Lynx 1.0.0 (`#235 <https://github.com/clearpathrobotics/clearpath_robot/issues/235>`_)
+  * Multiple boot request attempts
+  * Added travel field to feedback
+  Use travel for odometry
+  * Apply direction to travel
+  * Added odometry reset to lynx_motor_driver
+  * Record last travel data
+  * Last travel in header
+  * Renamed service to reset_travel
+  * Limit wheel velocity based on system protection max speed
+  * Added 1.0.0 bin
+* Contributors: Roni Kreinin
+
+2.5.1 (2025-06-17)
+------------------
+
+2.5.0 (2025-05-29)
+------------------
+
+2.4.1 (2025-05-20)
+------------------
+
+2.4.0 (2025-04-30)
+------------------
+
+2.3.3 (2025-04-17)
+------------------
+
+2.3.2 (2025-04-16)
+------------------
+
+2.3.1 (2025-04-14)
+------------------
+
+2.3.0 (2025-04-11)
+------------------
+* Feature/lynx firmware update process diagnostics (`#186 <https://github.com/clearpathrobotics/clearpath_robot/issues/186>`_)
+* Contributors: Hilary Luo
+
+2.2.4 (2025-04-07)
+------------------
+
+2.2.3 (2025-03-20)
+------------------
+
+2.2.2 (2025-03-17)
+------------------
+* [clearpath_motor_drivers/lynx_motor_driver] Change action log to debug. (`#171 <https://github.com/clearpathrobotics/clearpath_robot/issues/171>`_)
+* Contributors: Tony Baltovski
+
+2.2.1 (2025-03-12)
+------------------
+
+2.2.0 (2025-03-11)
+------------------
+* Lynx Warning flags (`#151 <https://github.com/clearpathrobotics/clearpath_robot/issues/151>`_)
+  * Added warning flags
+  * Updated diagnostics for warning flags
+  * Updated binary
+* Added Lynx motor driver diagnostics (`#149 <https://github.com/clearpathrobotics/clearpath_robot/issues/149>`_)
+  * Removed trailing spaces
+  * Added Lynx motor diagnostics
+* Contributors: Hilary Luo, Roni Kreinin
+
+2.1.2 (2025-02-28)
+------------------
+
+2.1.1 (2025-02-06)
+------------------
+
+2.1.0 (2025-01-31)
+------------------
+* Lynx updates (`#139 <https://github.com/clearpathrobotics/clearpath_robot/issues/139>`_)
+  * Wildcard for binary file name
+  * Don't queue CAN messages
+* Contributors: Roni Kreinin
+
+2.0.4 (2025-01-22)
+------------------
+* Multiply feedback velocity by wheel direction (`#132 <https://github.com/clearpathrobotics/clearpath_robot/issues/132>`_)
+* Contributors: Roni Kreinin
+
+2.0.3 (2025-01-17)
+------------------
+
+2.0.2 (2025-01-17)
+------------------
+* [clearpath_motor_drivers/lynx_motor_driver] Added rclcpp_action as dep.
+* Contributors: Tony Baltovski
+
+2.0.1 (2025-01-17)
+------------------
+* [clearpath_motor_drivers/lynx_motor_driver] Fixed required version of clearpath_motor_msgs.
+* Contributors: Tony Baltovski
+
+2.0.0 (2025-01-17)
+------------------
+* CAN bootloader fixes (`#112 <https://github.com/clearpathrobotics/clearpath_robot/issues/112>`_)
+  * Send boot request to all drivers on action start
+  * Removed first ack check
+  * Added Ack counter
+  * Resend data if counters dont match
+  * Make app counter a private variable of driver
+  * Re-attempt entering bootloader and alive check 5 times before skipping
+  * Fix for skipping unresponsive Lynx's
+  * Removed whitespace
+* A300 (`#106 <https://github.com/clearpathrobotics/clearpath_robot/issues/106>`_)
+  * Added lynx hardware interface
+  * Lynx motor driver
+  Rename clearpath_platform namespace to clearpath_hardware_interfaces
+  * Added A300 and Inventus battery to generator
+  * A300 lighting
+  * Dependencies and README
+  * Rename platform to hardware_interfaces in hardware.xml
+  * Fix append of bms in generator
+  * Removed wheel_joints\_ map
+  ---------
+  Co-authored-by: Luis Camero <lcamero@clearpathrobotics.com>
+* Contributors: Roni Kreinin
+
+* CAN bootloader fixes (`#112 <https://github.com/clearpathrobotics/clearpath_robot/issues/112>`_)
+  * Send boot request to all drivers on action start
+  * Removed first ack check
+  * Added Ack counter
+  * Resend data if counters dont match
+  * Make app counter a private variable of driver
+  * Re-attempt entering bootloader and alive check 5 times before skipping
+  * Fix for skipping unresponsive Lynx's
+  * Removed whitespace
+* A300 (`#106 <https://github.com/clearpathrobotics/clearpath_robot/issues/106>`_)
+  * Added lynx hardware interface
+  * Lynx motor driver
+  Rename clearpath_platform namespace to clearpath_hardware_interfaces
+  * Added A300 and Inventus battery to generator
+  * A300 lighting
+  * Dependencies and README
+  * Rename platform to hardware_interfaces in hardware.xml
+  * Fix append of bms in generator
+  * Removed wheel_joints\_ map
+  ---------
+  Co-authored-by: Luis Camero <lcamero@clearpathrobotics.com>
+* Contributors: Roni Kreinin
+
+1.0.1 (2024-11-28)
+------------------
+
+1.0.0 (2024-11-26)
+------------------
+
+0.3.2 (2024-10-04)
+------------------
+
+0.2.15 (2024-08-12)
+-------------------
+
+0.2.14 (2024-08-08)
+-------------------
+
+0.2.13 (2024-07-30)
+-------------------
+
+0.2.12 (2024-07-22)
+-------------------
+
+0.2.11 (2024-05-28)
+-------------------
+
+0.2.10 (2024-05-16 17:09)
+-------------------------
+
+0.2.9 (2024-05-16 12:19)
+------------------------
+
+0.2.8 (2024-05-14)
+------------------
+
+0.2.7 (2024-04-10)
+------------------
+
+0.2.6 (2024-04-08)
+------------------
+
+0.2.5 (2024-03-07)
+------------------
+
+0.2.4 (2024-01-19)
+------------------
+
+0.2.3 (2024-01-18)
+------------------
+
+0.2.2 (2024-01-10)
+------------------
+
+0.2.1 (2023-12-18)
+------------------
+
+0.2.0 (2023-12-13)
+------------------
+
+0.1.3 (2023-10-04)
+------------------
+
+0.1.2 (2023-09-27)
+------------------
+
+0.1.1 (2023-09-11)
+------------------
+
+0.1.0 (2023-08-31)
+------------------
+
+0.0.3 (2023-08-15)
+------------------
+
+0.0.2 (2023-07-25)
+------------------
+
+0.0.1 (2023-07-20)
+------------------

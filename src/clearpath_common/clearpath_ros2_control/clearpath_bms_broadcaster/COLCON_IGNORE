@@ -1,0 +1,1 @@
+Ignored to avoid battery_state_array.hpp build error on Humble.

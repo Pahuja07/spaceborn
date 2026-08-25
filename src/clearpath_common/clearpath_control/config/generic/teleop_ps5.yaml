@@ -1,0 +1,68 @@
+# Teleop configuration for PS5 joystick using the x-pad configuration.
+# Left thumb-stick up/down for velocity, left/right for twist
+# Left shoulder button for enable
+# Right shoulder button for enable-turbo
+#
+#          L1                                       R1
+#          L2                                       R2
+#       _=====_                                  _=====_
+#      / _____ \                                / _____ \
+#    +.-'_____'-.------------------------------.-'_____'-.+
+#   /   |     |  '.        S O N Y           .'  |  _  |   \
+#  / ___| /|\ |___ \                        / ___| /_\ |___ \
+# / |      |      | ;                      ; | _         _ ||
+# | | <---   ---> | |                      | ||_|       (_)||
+# | |___   |   ___| ;                      ; |___       ___||
+# |\    | \|/ |    /  _      ____      _   \    | (X) |    /|
+# | \   |_____|  .','" "',  (_PS_)  ,'" "', '.  |_____|  .' |
+# |  '-.______.-' /       \        /       \  '-._____.-'   |
+# |               |  LJ   |--------|  RJ   |                |
+# |              /\       /        \       /\               |
+# |             /  '.___.'          '.___.'  \              |
+# |            /                              \             |
+#  \          /                                \           /
+#   \________/                                  \_________/
+#
+# BUTTON         Value
+#   Cross          0
+#   Circle         1
+#   Triangle       2
+#   Square         3
+#   L1             4
+#   R1             5
+#   L2             6
+#   R2             7
+#
+#    AXIS        Value
+# Left Horiz.      0
+# Left Vert.       1
+#    L2            2
+# Right Horiz.     3
+# Right Vert.      4
+#    R2            5
+# D-pad Horiz.     6
+# D-pad Vert.      7
+
+teleop_twist_joy_node:
+  ros__parameters:
+    publish_stamped_twist: True
+    use_sim_time: False
+    axis_linear.x: 1
+    axis_linear.y: 3
+    axis_angular.yaw: 0
+    enable_button: 4
+    enable_turbo_button: 5
+
+joy_node:
+  ros__parameters:
+    use_sim_time: False
+    deadzone: 0.1
+    autorepeat_rate: 20.0
+    dev: /dev/input/ps5
+
+bt_cutoff_node:
+  ros__parameters:
+    publish_rate: 10.0
+    joy_device: /dev/input/ps5
+    expected_report_hz: 200.0
+    quality_threshold_pct: 40
