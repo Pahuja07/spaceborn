@@ -1,0 +1,18 @@
+import { validationResult } from 'express-validator';
+
+// Express Middleware to check for validation errors
+export const validateRequest = (req, res, next) => {
+  const errors = validationResult(req);
+  
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      errors: errors.array().map(err => ({
+        field: err.path,
+        message: err.msg
+      }))
+    });
+  }
+
+  next();
+};
